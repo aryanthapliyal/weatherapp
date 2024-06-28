@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        #weather-result {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        async function fetchWeather() {
+            const apiKey = '3ebfdf274616c86eb88710e26674361e';
+            const city = document.getElementById('city').value;
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error('City not found');
+                }
+                const data = await response.json();
+                displayWeather(data);
+            } catch (error) {
+                document.getElementById('weather-result').innerText = 'Error: ' + error.message;
+            }
+        }
+
+        function displayWeather(data) {
+            const weatherResult = document.getElementById('weather-result');
+            weatherResult.innerHTML = `
+                <h2>Weather in ${data.name}</h2>
+                <p>Temperature: ${data.main.temp}°C</p>
+                <p>Weather: ${data.weather[0].description}</p>
+                <p>Humidity: ${data.main.humidity}%</p>
+                <p>Wind Speed: ${data.wind.speed} m/s</p>
+            `;
+        }
+    </script>
+</head>
+<body>
+    <h1>Weather Website</h1>
+    <input type="text" id="city" placeholder="Enter city name" />
+    <button onclick="fetchWeather()">Get Weather</button>
+    <div id="weather-result"></div>
+</body>
+</html>
