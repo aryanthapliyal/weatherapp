@@ -37,23 +37,23 @@ async function checkWeather(city) {
   switch (weather_data.weather[0].main) {
     case "Clouds":
       weather_img.src =
-        "/Users/aryanthapliyal/Desktop/webdev/weatherapp/weatherapp/assets/cloud.png";
+        "/assets/cloud.png";
       break;
     case "Clear":
       weather_img.src =
-        "/Users/aryanthapliyal/Desktop/webdev/weatherapp/weatherapp/assets/clear.png";
+        "/assets/clear.png";
       break;
     case "Rain":
       weather_img.src =
-        "/Users/aryanthapliyal/Desktop/webdev/weatherapp/weatherapp/assets/rain.png";
+        "/assets/rain.png";
       break;
     case "Mist":
       weather_img.src =
-        "/Users/aryanthapliyal/Desktop/webdev/weatherapp/weatherapp/assets/mist.png";
+        "/assets/mist.png";
       break;
     case "Snow":
       weather_img.src =
-        "/Users/aryanthapliyal/Desktop/webdev/weatherapp/weatherapp/assets/snow.png";
+        "/assets/snow.png";
       break;
   }
 
